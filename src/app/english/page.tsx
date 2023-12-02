@@ -1,11 +1,10 @@
 'use client';
 
-import { useState } from "react";
+import { FC, useState } from "react";
 import withHeader from "../../hoc/with-header"
 import {TaskComponent} from "../../components/task-test";
-import dynamic from "next/dynamic";
 
-const English = () => {
+const English: FC = () => {
     const [currentLevel, setCurrentLevel] = useState(1);
 
     const droppableElements = [
@@ -26,7 +25,6 @@ const English = () => {
 
     return (
         <div>
-            english
             <TaskComponent
                 level={currentLevel}
                 title="Put the red ball on the red table"

@@ -4,7 +4,7 @@ import { Wrapper } from "./styles";
 import { Header } from "../components/header";
 
 interface WithHeaderProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 const withHeader = <P extends WithHeaderProps>(
   WrappedComponent: React.ComponentType<P>

@@ -32,10 +32,9 @@ export const Header = () => {
             </Logo>
             <Badge count={'lite'} overflowCount={99999}>
 
-                <Dropdown menu={{ items }} size="large" placement="bottom" >
+                <Dropdown menu={{ items }} placement="bottom" >
                     <Button icon={<UserOutlined style={{ fontSize: 20 }} />}>
-                        {localStorage.getItem('username') || ''}
-
+                        {typeof window !== "undefined" ? window.localStorage.getItem('username'): ""}
                     </Button>
                 </Dropdown>
             </Badge>

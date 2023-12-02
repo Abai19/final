@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 const AuthPage = () => {
     const {push} = useRouter()
     const onFinish = (values: any) => {
-        localStorage.setItem('username', values.username)
+        typeof window !== "undefined" ? window.localStorage.setItem('username', values.username ): ""
         push('/language')
         console.log('Received values of form: ', values);
     };
