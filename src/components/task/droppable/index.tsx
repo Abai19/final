@@ -14,7 +14,7 @@ export const Droppable = ({id, imageUrl}: IElement) => {
 
   return (
     <div ref={setNodeRef} style={style}>
-        <Image width={50} height={50} src={imageUrl} alt={`Element ${id}`} />
+        <Image width={250} height={200} src={imageUrl} alt={`Element ${id}`} />
     </div>
   );
 }

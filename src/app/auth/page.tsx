@@ -9,7 +9,6 @@ const AuthPage = () => {
     const onFinish = (values: any) => {
         typeof window !== "undefined" ? window.localStorage.setItem('username', values.username ): ""
         push('/language')
-        console.log('Received values of form: ', values);
     };
 
     return (

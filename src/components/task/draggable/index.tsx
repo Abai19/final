@@ -15,7 +15,7 @@ export const Draggable = ({id, imageUrl} : IElement) =>  {
 
   return (
     <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
-        <Image width={200} height={150} src={imageUrl} alt={`Element ${id}`} />
+        <Image width={250} height={200} src={imageUrl} alt={`Element ${id}`} />
     </div>
   );
 }

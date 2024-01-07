@@ -3,6 +3,7 @@ import { Badge, Button, Dropdown, MenuProps } from "antd";
 import { HeaderWrapper, Logo } from "./styles";
 import { UserOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
+import { useMemo } from "react";
 const headerStyle: React.CSSProperties = {
     textAlign: 'center',
     color: '#fff',
@@ -24,7 +25,13 @@ export const Header = () => {
             onClick: logoutClick
         },
     ];
-   
+    const title = useMemo(() => {
+        if (typeof window == "undefined"){
+            return ''
+        }
+        return typeof window !== "undefined" ? window.localStorage.getItem('username'): ""
+    },[window.localStorage])
+
     return (
         <HeaderWrapper style={headerStyle}>
             <Logo>
@@ -34,7 +41,7 @@ export const Header = () => {
 
                 <Dropdown menu={{ items }} placement="bottom" >
                     <Button icon={<UserOutlined style={{ fontSize: 20 }} />}>
-                        {typeof window !== "undefined" ? window.localStorage.getItem('username'): ""}
+                        {title}
                     </Button>
                 </Dropdown>
             </Badge>
