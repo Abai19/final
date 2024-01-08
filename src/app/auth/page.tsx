@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 const AuthPage = () => {
     const {push} = useRouter()
     const onFinish = (values: any) => {
-        typeof window !== "undefined" ? window.localStorage.setItem('username', values.username ): ""
+        typeof window !== "undefined" ? localStorage.setItem('username', values.username ): ""
         push('/language')
     };
 

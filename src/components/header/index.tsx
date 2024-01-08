@@ -3,7 +3,7 @@ import { Badge, Button, Dropdown, MenuProps } from "antd";
 import { HeaderWrapper, Logo } from "./styles";
 import { UserOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 const headerStyle: React.CSSProperties = {
     textAlign: 'center',
     color: '#fff',
@@ -13,6 +13,7 @@ const headerStyle: React.CSSProperties = {
     backgroundColor: '#1677ff',
 };
 export const Header = () => {
+    const [title, setTitle] = useState<string>('');
 
     const { push } = useRouter();
     const logoutClick = () => {
@@ -25,12 +26,13 @@ export const Header = () => {
             onClick: logoutClick
         },
     ];
-    const title = useMemo(() => {
-        if (typeof window == "undefined"){
-            return ''
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const storedUsername = localStorage.getItem('username');
+            setTitle(storedUsername || '');
         }
-        return typeof window !== "undefined" ? window.localStorage.getItem('username'): ""
-    },[window.localStorage])
+    }, []);
+
 
     return (
         <HeaderWrapper style={headerStyle}>
