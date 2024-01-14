@@ -17,16 +17,15 @@ const English: FC = () => {
     const goPrev = () => {
         setCurrentLevel(currentLevel - 1);
     };
-
     const content = useMemo(() => {
-        if (! getItems(goNext)[currentLevel]?.content) {
+        if (! getItems(currentLevel)[currentLevel]?.content) {
             notification.success({message: 'Congratulations, you have completed all tasks'})
             return ''
         }
-        return getItems(goNext)[currentLevel].content
+        return getItems(currentLevel)[currentLevel].content
     },[currentLevel])
 
-    const stepsLength = getItems(goNext).length;
+    const stepsLength = getItems(currentLevel).length;
     
     return (
         <Wrapper>
@@ -36,13 +35,14 @@ const English: FC = () => {
                         <Button size="large" icon={<LeftOutlined />} onClick={goPrev}>Previous</Button>
                     )
                 }
-                <Steps current={currentLevel} items={getItems(goNext)} />
+                <Steps current={currentLevel} items={getItems(currentLevel)} />
                 {
-                        currentLevel < stepsLength - 1 && (
+                    currentLevel < stepsLength - 1 && (
                         <Button size="large" onClick={goNext}>
                             Next
                             <RightOutlined />
-                        </Button>                    )
+                        </Button>                    
+                    )
                 }
             </Flex>
             {content}

@@ -1,16 +1,17 @@
 
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { Draggable } from './draggable';
 import { Droppable } from './droppable';
 import {Howl} from 'howler';
-import { Typography } from 'antd';
-import { ContentWrapper } from './styles';
+import { Flex, Typography } from 'antd';
+import { ContentWrapper, Counter } from './styles';
 
 export interface IElement {
     id: number;
     imageUrl: string;
-    correct: boolean;
+    isDropped?: boolean;
+    isAnimated?: boolean;
 }
 
 interface TaskProps {
@@ -21,7 +22,7 @@ interface TaskProps {
     dropTargets: IElement[];
     soundUrlCorrect: string;
     soundUrlWrong: string;
-    onDropSuccess: () => void;
+    currentLevel: number;
 }
 
 const TaskComponent: React.FC<TaskProps> = ({
@@ -31,7 +32,7 @@ const TaskComponent: React.FC<TaskProps> = ({
     dropTargets,
     soundUrlCorrect,
     soundUrlWrong,
-    onDropSuccess,
+    currentLevel,
 }) => {
     const soundCorrect = new Howl({
         src: [soundUrlCorrect],
@@ -45,26 +46,39 @@ const TaskComponent: React.FC<TaskProps> = ({
         src: [titleSound],
         format: ['mp3']
     })
-    soundTitle.play();
+    const [isDropped, setDropped] = useState(false)
+
     function handleDragEnd({ active,over }: DragEndEvent) {
         if (active.id === over?.id) {
             soundCorrect.play();
-            onDropSuccess();
+            setDropped(true);
         }
         else {
             soundWrong.play()
         }
     }
+    useEffect(() => {
+        soundTitle.play();
+        setDropped(false)
+      }, []);
     const draggableItems = droppableElements.map((item) => (
-        <Draggable {...item} key={item.id} />
+        <Draggable key={`draggable_${item.id}`} {...item} />
     ))
-    const droppableItems = dropTargets.map((item) => (
-        <Droppable {...item} key={item.id}/>
-    ))
+  
+    const droppableItems = useMemo(() => {
+        return  dropTargets.map((item) => (
+            <Droppable key={`droppable_${item.id}`} {...item} isDropped={isDropped} isAnimated={item.isAnimated}/>
+        ))
+    },[dropTargets,isDropped])
+ 
     return (
         <>
-            <Typography.Title level={4} style={{textAlign: 'center'}}>{title}</Typography.Title>
-            <DndContext onDragEnd={handleDragEnd}>
+            <Flex align='center' justify='space-between' style={{marginTop: 20}}>
+                <div></div>
+                <Typography.Title level={4} style={{textAlign: 'center'}}>{title}</Typography.Title>
+                <Counter>{currentLevel + 1}</Counter>
+            </Flex>
+            <DndContext onDragEnd={handleDragEnd} autoScroll={{enabled: false}} >
                 <ContentWrapper>
                     <div>
                         {draggableItems}
