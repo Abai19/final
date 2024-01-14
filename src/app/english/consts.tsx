@@ -60,7 +60,7 @@ export const getItems = (currentItem: number) =>  [
         content: (
             <TaskComponent
                 key={currentItem}
-                title="Give the squirrel an apple"
+                title="Give an apple to the squirrel"
                 titleSound= '/english/sounds/squirrel-apple.mp3'
                 droppableElements={droppableElements}
                 dropTargets={dropTargets}
@@ -75,7 +75,7 @@ export const getItems = (currentItem: number) =>  [
         content: (
             <TaskComponent
                 key={currentItem}
-                title="Give the squirrel a nut"
+                title="Give a nut to the squirrel"
                 titleSound= '/english/sounds/squirrel-nut.mp3'
                 droppableElements={droppableElements3}
                 dropTargets={dropTargets3}
@@ -90,7 +90,7 @@ export const getItems = (currentItem: number) =>  [
         content: (
             <TaskComponent
                 key={currentItem}
-                title="Give the squirrel a pear"
+                title="Give a pear to the squirrel"
                 titleSound= '/english/sounds/squirrel-pear.mp3'
                 droppableElements={droppableElements4}
                 dropTargets={dropTargets4}
