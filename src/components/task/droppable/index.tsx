@@ -1,13 +1,15 @@
 
-import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
-import { useDroppable } from '@dnd-kit/core';
-import { IElement } from '..';
+import {useDroppable} from '@dnd-kit/core';
+import {Popover} from 'antd';
 import Image from 'next/image';
-import { DroppableWrapper } from './style';
-import { Popover } from 'antd';
+import React, {useMemo} from 'react';
 
-export const Droppable = ({ id, imageUrl, isDropped, isAnimated }: IElement) => {
-    const { isOver, setNodeRef } = useDroppable({
+import {IElement} from '..';
+
+import {DroppableWrapper} from './style';
+
+export const Droppable = ({id, imageUrl, isDropped, isAnimated}: IElement) => {
+    const {isOver, setNodeRef} = useDroppable({
         id: id,
     });
 
@@ -17,16 +19,16 @@ export const Droppable = ({ id, imageUrl, isDropped, isAnimated }: IElement) => 
                 <Popover title="Thank you :)" open={isDropped}>
                     <Image width={350} height={250} src={imageUrl} alt={`Element ${id}`} />
                 </Popover>
-            )
+            );
         }
         return (
             <Image width={350} height={250} src={imageUrl} alt={`Element ${id}`} />
-        )
-    },[isDropped,imageUrl])
+        );
+    }, [isDropped, imageUrl]);
 
     return (
         <DroppableWrapper ref={setNodeRef} isOver={isOver} isAnimation={isDropped && isAnimated}>
             {content}
         </DroppableWrapper>
     );
-}
+};

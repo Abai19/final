@@ -1,9 +1,11 @@
 'use client';
-import { FC, ReactNode } from "react"
-import withHeader from "../../hoc/with-header"
-import { Button, Space, Typography } from "antd";
-import { LanguageWrapper, StyledButton } from "./styles";
-import { useRouter } from "next/navigation";
+import {Space, Typography} from 'antd';
+import {useRouter} from 'next/navigation';
+import {FC} from 'react';
+
+import withHeader from '../../hoc/with-header';
+
+import {LanguageWrapper, StyledButton} from './styles';
 
 const Language: FC = () => {
     const {push} = useRouter();
@@ -11,22 +13,22 @@ const Language: FC = () => {
     return (
         <LanguageWrapper>
             <div>
-            <Typography.Title level={4}>
+                <Typography.Title level={4}>
                 Выберите язык для обучения
-            </Typography.Title>
-            <Space direction="vertical" style={{width: "100%"}} size="middle">
-            <StyledButton size="large" type="primary" onClick={() => push('/english')}>
+                </Typography.Title>
+                <Space direction="vertical" style={{width: '100%'}} size="middle">
+                    <StyledButton size="large" type="primary" onClick={() => push('/english')}>
                 Английский
-            </StyledButton>
-            <StyledButton size="large" type="primary" onClick={() => push('/kyrgyz')}>
+                    </StyledButton>
+                    <StyledButton size="large" type="primary" onClick={() => push('/kyrgyz')}>
                 Кыргызский
-            </StyledButton>
-            <StyledButton  size="large" type="primary" onClick={() => push('/korean')}>
+                    </StyledButton>
+                    <StyledButton size="large" type="primary" onClick={() => push('/korean')}>
                 Корейский
-            </StyledButton>
-            </Space>
+                    </StyledButton>
+                </Space>
             </div>
         </LanguageWrapper>
-    )
-}
-export  default withHeader(Language)
+    );
+};
+export default withHeader(Language);

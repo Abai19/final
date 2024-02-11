@@ -1,10 +1,12 @@
 'use client';
-import { FC, useMemo, useState } from "react";
-import withHeader from "../../hoc/with-header"
-import { Button, Flex, Steps, notification } from "antd";
-import { getItems } from "./consts";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { Wrapper } from "./styles";
+import {LeftOutlined, RightOutlined} from '@ant-design/icons';
+import {Button, Flex, Steps, notification} from 'antd';
+import {FC, useMemo, useState} from 'react';
+
+import withHeader from '../../hoc/with-header';
+
+import {getItems} from './consts';
+import {Wrapper} from './styles';
 
 const English: FC = () => {
     const [currentLevel, setCurrentLevel] = useState(0);
@@ -19,12 +21,11 @@ const English: FC = () => {
     const content = useMemo(() => {
         const items = getItems(currentLevel);
         if (!items[currentLevel]?.content) {
-            notification.success({ message: 'Congratulations, you have completed all tasks' });
+            notification.success({message: 'Congratulations, you have completed all tasks'});
             return '';
         }
         return items[currentLevel].content;
     }, [currentLevel]);
-    
 
     const stepsLength = getItems(currentLevel).length;
     
@@ -48,6 +49,6 @@ const English: FC = () => {
             </Flex>
             {content}
         </Wrapper>
-    )
-}
-export default withHeader(English)
+    );
+};
+export default withHeader(English);

@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ContentWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 50vh;
-`
+`;
 export const Counter = styled.div`
     display: flex;
     justify-content: center;
@@ -17,4 +17,4 @@ export const Counter = styled.div`
     background-color: #1677ff;
     border-radius: 50%;
     padding: 5px;
-`
+`;

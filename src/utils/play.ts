@@ -17,4 +17,4 @@ export const play = (text: string) => {
     } else {
         console.error('Speech synthesis not supported');
     }
-}
+};
