@@ -66,9 +66,6 @@ const TaskComponent: React.FC<TaskProps> = ({
     useEffect(() => {
         play(title);
         setDropped(false);
-        return () => {
-            play(''); 
-        };
     }, [title]);  
 
     const draggableItems = droppableElements.map((item) => (
