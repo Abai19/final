@@ -19,7 +19,6 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18",
     "react-howler": "^5.2.0",
-    "sharp": "^0.33.2",
     "styled-components": "^6.1.1"
   },
   "devDependencies": {
