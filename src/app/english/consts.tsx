@@ -1,26 +1,22 @@
 import TaskComponent from '../../components/task'
 
 const droppableElements2 = [
-    { id: 2, imageUrl: '/english/images/red_ball.png'},
+    { id: 2, imageUrl: '/english/images/red_ball.png' },
 ];
 
 const dropTargets2 = [
-    { id: 2,imageUrl: '/english/images/red-table.png' },
-];
-
-const droppableElements = [
-    { id: 1, imageUrl: '/english/images/apple.png'},
+    { id: 2, imageUrl: '/english/images/red-table.png' },
 ];
 
 const dropTargets = [
-    { id: 1,imageUrl: '/english/images/sq.png', isAnimated: true },
+    { id: 1, imageUrl: '/english/images/sq.png', isAnimated: true },
 ];
 const droppableElements3 = [
-    { id: 3, imageUrl: '/english/images/nut.png'},
+    { id: 3, imageUrl: '/english/images/nut.png' },
 ];
 
 const dropTargets3 = [
-    { id: 3,imageUrl: '/english/images/sq.png', isAnimated: true },
+    { id: 3, imageUrl: '/english/images/sq.png', isAnimated: true },
 ];
 
 const droppableElements4 = [
@@ -28,7 +24,7 @@ const droppableElements4 = [
 ];
 
 const dropTargets4 = [
-    { id: 4,imageUrl: '/english/images/sq.png', isAnimated: true },
+    { id: 4, imageUrl: '/english/images/sq.png', isAnimated: true },
 ];
 
 const droppableElements5 = [
@@ -36,7 +32,7 @@ const droppableElements5 = [
 ];
 
 const dropTargets5 = [
-    { id: 4,imageUrl: '/english/images/table.webp'},
+    { id: 4, imageUrl: '/english/images/table.webp' },
 ];
 
 const droppableElements6 = [
@@ -44,7 +40,7 @@ const droppableElements6 = [
 ];
 
 const dropTargets6 = [
-    { id: 4,imageUrl: '/english/images/chair.webp'},
+    { id: 4, imageUrl: '/english/images/chair.webp' },
 ];
 
 const droppableElements7 = [
@@ -52,17 +48,51 @@ const droppableElements7 = [
 ];
 
 const dropTargets7 = [
-    { id: 4,imageUrl: '/english/images/board.avif'},
+    { id: 4, imageUrl: '/english/images/board.avif' },
 ];
-export const getItems = (currentItem: number) =>  [
-    {
+export const getItems = (currentItem: number) => {
+    const droppableElementsSquirrel = [
+        { id: 1, imageUrl: '/english/images/apple.png', title: 'an apple' },
+        { id: 1, imageUrl: '/english/images/nut.png', title: 'a nut' },
+        { id: 1, imageUrl: '/english/images/pear.webp', title: 'a pear' },
+    ];
+    const randomElementSquirrel = droppableElementsSquirrel[Math.floor(Math.random() * droppableElementsSquirrel.length)];
+
+    const draggableItemsSecond = [
+        { id: 4, imageUrl: '/english/images/ball.webp', title: 'the ball' },
+        { id: 4, imageUrl: '/english/images/book.png', title: "the book" },
+        { id: 4, imageUrl: '/english/images/pen.png', title: "the pen" },
+    ]
+    const droppableItemsSecond = [
+        { id: 4, imageUrl: '/english/images/table.webp', title: 'table' },
+        { id: 4, imageUrl: '/english/images/chair.webp', title: 'chair' },
+        { id: 4, imageUrl: '/english/images/board.avif', title: 'board' },
+    ]
+    const randomElementSecond = draggableItemsSecond[Math.floor(Math.random() * draggableItemsSecond.length)];
+    const randomPlaceSecond = droppableItemsSecond[Math.floor(Math.random() * droppableItemsSecond.length)];
+
+
+    const draggableItemsThird = [
+        { id: 2, imageUrl: '/english/images/red_ball.png', title: 'red ball' },
+        { id: 2, imageUrl: '/english/images/blue_book.png', title: 'blue book' },
+        { id: 2, imageUrl: '/english/images/green_pen.png', title: 'green pen' },
+    ]
+    
+    const droppableItemsThird = [
+        { id: 2, imageUrl: '/english/images/red-table.png', title: 'red table' },
+        { id: 2, imageUrl: '/english/images/green_chair.png', title: 'green chair' },
+        { id: 2, imageUrl: '/english/images/black_board.webp', title: 'black board' },
+    ]
+    const randomElementThird = draggableItemsThird[Math.floor(Math.random() * draggableItemsThird.length)];
+    const randomPlaceThird = droppableItemsThird[Math.floor(Math.random() * droppableItemsThird.length)];
+
+    const items = [{
         title: '',
         content: (
             <TaskComponent
-                key={currentItem}
-                title="Give an apple to the squirrel"
-                titleSound= '/english/sounds/squirrel-apple.mp3'
-                droppableElements={droppableElements}
+                key={'squirrel'}
+                title={`Give ${randomElementSquirrel.title} to the squirrel`}
+                droppableElements={[randomElementSquirrel]}
                 dropTargets={dropTargets}
                 soundUrlCorrect="/english/sounds/thankyou.mp3"
                 soundUrlWrong="/english/sounds/wrong.mp3"
@@ -74,41 +104,10 @@ export const getItems = (currentItem: number) =>  [
         title: '',
         content: (
             <TaskComponent
-                key={currentItem}
-                title="Give a nut to the squirrel"
-                titleSound= '/english/sounds/squirrel-nut.mp3'
-                droppableElements={droppableElements3}
-                dropTargets={dropTargets3}
-                soundUrlCorrect="/english/sounds/thankyou.mp3"
-                soundUrlWrong="/english/sounds/wrong.mp3"
-                currentLevel={currentItem}
-            />
-        )
-    },
-    {
-        title: '',
-        content: (
-            <TaskComponent
-                key={currentItem}
-                title="Give a pear to the squirrel"
-                titleSound= '/english/sounds/squirrel-pear.mp3'
-                droppableElements={droppableElements4}
-                dropTargets={dropTargets4}
-                soundUrlCorrect="/english/sounds/thankyou.mp3"
-                soundUrlWrong="/english/sounds/wrong.mp3"
-                currentLevel={currentItem}
-            />
-        )
-    },
-    {
-        title: '',
-        content: (
-            <TaskComponent
-                key={currentItem}
-                title="Put the ball on the table"
-                titleSound= '/english/sounds/ball-table.mp3'
-                droppableElements={droppableElements5}
-                dropTargets={dropTargets5}
+                key={'item'}
+                title={`Put ${randomElementSecond.title} on the ${randomPlaceSecond.title}`}
+                droppableElements={[randomElementSecond]}
+                dropTargets={[randomPlaceSecond]}
                 soundUrlCorrect="/english/sounds/great.mp3"
                 soundUrlWrong="/english/sounds/wrong.mp3"
                 currentLevel={currentItem}
@@ -119,11 +118,10 @@ export const getItems = (currentItem: number) =>  [
         title: '',
         content: (
             <TaskComponent
-                key={currentItem}
-                title="Put the book on the chair"
-                titleSound= '/english/sounds/book-chair.mp3'
-                droppableElements={droppableElements6}
-                dropTargets={dropTargets6}
+                key={'item-2'}
+                title={`Put ${randomElementSecond.title} on the ${randomPlaceSecond.title}`}
+                droppableElements={[randomElementSecond]}
+                dropTargets={[randomPlaceSecond]}
                 soundUrlCorrect="/english/sounds/great.mp3"
                 soundUrlWrong="/english/sounds/wrong.mp3"
                 currentLevel={currentItem}
@@ -134,11 +132,10 @@ export const getItems = (currentItem: number) =>  [
         title: '',
         content: (
             <TaskComponent
-                key={currentItem}
-                title="Put the pen on the board"
-                titleSound= '/english/sounds/pen-board.mp3'
-                droppableElements={droppableElements7}
-                dropTargets={dropTargets7}
+                key={'item-3'}
+                title={`Put ${randomElementSecond.title} on the ${randomPlaceSecond.title}`}
+                droppableElements={[randomElementSecond]}
+                dropTargets={[randomPlaceSecond]}
                 soundUrlCorrect="/english/sounds/great.mp3"
                 soundUrlWrong="/english/sounds/wrong.mp3"
                 currentLevel={currentItem}
@@ -149,11 +146,38 @@ export const getItems = (currentItem: number) =>  [
         title: '',
         content: (
             <TaskComponent
-                key={currentItem}
-                title="Put the red ball on the red table"
-                titleSound= '/english/sounds/redball-redtable.mp3'
-                droppableElements={droppableElements2}
-                dropTargets={dropTargets2}
+                key={"color"}
+                title={`Put the ${randomElementThird.title} on the ${randomPlaceThird.title}`}
+                droppableElements={[randomElementThird]}
+                dropTargets={[randomPlaceThird]}
+                soundUrlCorrect="/english/sounds/great.mp3"
+                soundUrlWrong="/english/sounds/wrong.mp3"
+                currentLevel={currentItem}
+            />
+        )
+    },
+    {
+        title: '',
+        content: (
+            <TaskComponent
+                key={"color-2"}
+                title={`Put the ${randomElementThird.title} on the ${randomPlaceThird.title}`}
+                droppableElements={[randomElementThird]}
+                dropTargets={[randomPlaceThird]}
+                soundUrlCorrect="/english/sounds/great.mp3"
+                soundUrlWrong="/english/sounds/wrong.mp3"
+                currentLevel={currentItem}
+            />
+        )
+    },
+    {
+        title: '',
+        content: (
+            <TaskComponent
+                key={"color-3"}
+                title={`Put the ${randomElementThird.title} on the ${randomPlaceThird.title}`}
+                droppableElements={[randomElementThird]}
+                dropTargets={[randomPlaceThird]}
                 soundUrlCorrect="/english/sounds/great.mp3"
                 soundUrlWrong="/english/sounds/wrong.mp3"
                 currentLevel={currentItem}
@@ -161,3 +185,5 @@ export const getItems = (currentItem: number) =>  [
         )
     },
 ]
+    return items
+}

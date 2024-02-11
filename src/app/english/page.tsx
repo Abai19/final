@@ -1,5 +1,4 @@
 'use client';
-
 import { FC, useMemo, useState } from "react";
 import withHeader from "../../hoc/with-header"
 import { Button, Flex, Steps, notification } from "antd";
@@ -18,12 +17,14 @@ const English: FC = () => {
         setCurrentLevel(currentLevel - 1);
     };
     const content = useMemo(() => {
-        if (! getItems(currentLevel)[currentLevel]?.content) {
-            notification.success({message: 'Congratulations, you have completed all tasks'})
-            return ''
+        const items = getItems(currentLevel);
+        if (!items[currentLevel]?.content) {
+            notification.success({ message: 'Congratulations, you have completed all tasks' });
+            return '';
         }
-        return getItems(currentLevel)[currentLevel].content
-    },[currentLevel])
+        return items[currentLevel].content;
+    }, [currentLevel]);
+    
 
     const stepsLength = getItems(currentLevel).length;
     
