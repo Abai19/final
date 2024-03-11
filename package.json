@@ -11,9 +11,11 @@
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "@dnd-kit/core": "^6.1.0",
+    "@types/lodash": "^4.14.202",
     "@types/react-howler": "^5.2.3",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "antd": "^5.11.5",
+    "lodash": "^4.17.21",
     "next": "14.0.3",
     "react": "^18",
     "react-beautiful-dnd": "^13.1.1",

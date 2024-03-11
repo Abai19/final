@@ -1,8 +1,9 @@
 'use client';
 import {DndContext, DragEndEvent} from '@dnd-kit/core';
+import {Coordinates} from '@dnd-kit/core/dist/types';
 import {Flex, Typography} from 'antd';
 import {Howl} from 'howler';
-import React, {memo, useEffect, useMemo, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 
 import {play} from '../../utils/play';
 
@@ -15,6 +16,7 @@ export interface IElement {
     imageUrl: string;
     isDropped?: boolean;
     isAnimated?: boolean;
+    delta?: Coordinates;
 }
 
 interface TaskProps {
@@ -36,6 +38,7 @@ const TaskComponent: React.FC<TaskProps> = ({
     currentLevel,
 }) => {
     const [isClient, setIsClient] = useState(false);
+    const [position, setPosition] = useState<{[key: string]: Coordinates | undefined}>({});
 
     const soundCorrect = new Howl({
         src: [soundUrlCorrect],
@@ -45,39 +48,40 @@ const TaskComponent: React.FC<TaskProps> = ({
         src: [soundUrlWrong],
         format: ['mp3'],
     });
-    // const soundTitle = new Howl({
-    //     src: [titleSound],
-    //     format: ['mp3']
-    // })
+    
     useEffect(() => {
         setIsClient(true);
     }, []);
     const [isDropped, setDropped] = useState(false);
 
-    function handleDragEnd ({active, over}: DragEndEvent) {
-        if (active.id === over?.id) {
+    function handleDragEnd ({active, over, delta}: DragEndEvent) {
+        if (!over?.id) {
+            soundWrong.play();
+            setPosition({...position, [active.id]: undefined});
+            return;
+        }
+        if (active.id >= over?.id) {
             soundCorrect.play();
             setDropped(true);
+            setPosition({...position, [active.id]: delta});
         } else {
             soundWrong.play();
+            setPosition({...position, [active.id]: undefined});
         }
     }
-
     useEffect(() => {
         play(title);
         setDropped(false);
     }, [title]);  
 
     const draggableItems = droppableElements.map((item) => (
-        <Draggable key={`draggable_${item.id}`} {...item} />
+        <Draggable key={`draggable_${item.id}`} {...item} delta={position[item.id]} />
     ));
   
-    const droppableItems = useMemo(() => {
-        return dropTargets.map((item) => (
-            <Droppable key={`droppable_${item.id}`} {...item} isDropped={isDropped} isAnimated={item.isAnimated} />
-        ));
-    }, [dropTargets, isDropped]);
- 
+    const droppableItems = dropTargets.map((item) => (
+        <Droppable key={`droppable_${item.id}`} {...item} isDropped={isDropped} isAnimated={item.isAnimated} />
+    ));
+    
     return (
         <>
             {

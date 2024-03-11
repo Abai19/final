@@ -24,7 +24,7 @@ export const Droppable = ({id, imageUrl, isDropped, isAnimated}: IElement) => {
         return (
             <Image width={350} height={250} src={imageUrl} alt={`Element ${id}`} />
         );
-    }, [isDropped, imageUrl]);
+    }, [isDropped, isAnimated, imageUrl, id]);
 
     return (
         <DroppableWrapper ref={setNodeRef} isOver={isOver} isAnimation={isDropped && isAnimated}>
