@@ -1,7 +1,7 @@
 'use client';
 import {DndContext, DragEndEvent} from '@dnd-kit/core';
 import {Coordinates} from '@dnd-kit/core/dist/types';
-import {Flex, Typography} from 'antd';
+import {Flex, Typography, notification} from 'antd';
 import {Howl} from 'howler';
 import React, {memo, useEffect, useState} from 'react';
 
@@ -57,15 +57,18 @@ const TaskComponent: React.FC<TaskProps> = ({
     function handleDragEnd ({active, over, delta}: DragEndEvent) {
         if (!over?.id) {
             soundWrong.play();
+            notification.error({message: 'Wrong', duration: 1});
             setPosition({...position, [active.id]: undefined});
             return;
         }
         if (active.id >= over?.id) {
             soundCorrect.play();
+            notification.success({message: 'Great', duration: 1});
             setDropped(true);
             setPosition({...position, [active.id]: delta});
         } else {
             soundWrong.play();
+            notification.error({message: 'Wrong', duration: 1});
             setPosition({...position, [active.id]: undefined});
         }
     }
