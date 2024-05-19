@@ -1,5 +1,5 @@
 'use client';
-import {DndContext, DragEndEvent} from '@dnd-kit/core';
+import {DndContext, DragEndEvent, useSensors, useSensor, MouseSensor, TouchSensor} from '@dnd-kit/core';
 import {Coordinates} from '@dnd-kit/core/dist/types';
 import {Flex, Typography, notification} from 'antd';
 import {Howl} from 'howler';
@@ -16,7 +16,6 @@ export interface IElement {
     id: number;
     imageUrl: string;
     isDropped?: boolean;
-    isAnimated?: boolean;
     delta?: Coordinates;
 }
 
@@ -30,16 +29,17 @@ interface TaskProps {
     currentLevel: number;
 }
 
-const TaskComponent: React.FC<TaskProps> = ({
+const LevelFifteen: React.FC<TaskProps> = ({
     title,
-    droppableElements,
-    dropTargets,
     soundUrlCorrect,
     soundUrlWrong,
     currentLevel,
 }) => {
     const [isClient, setIsClient] = useState(false);
-    const [position, setPosition] = useState<{[key: string]: Coordinates | undefined}>({});
+    const [position, setPosition] = useState<{[key: number]: Coordinates | undefined}>({
+
+    });
+    const [currentId, setCurrentId] = useState(1);
     const path = usePathname();
 
     const soundCorrect = new Howl({
@@ -50,7 +50,19 @@ const TaskComponent: React.FC<TaskProps> = ({
         src: [soundUrlWrong],
         format: ['mp3'],
     });
-    
+    const sensors = useSensors(
+        useSensor(MouseSensor, {
+            activationConstraint: {
+                distance: 8,
+            },
+        }),
+        useSensor(TouchSensor, {
+            activationConstraint: {
+                delay: 200,
+                tolerance: 6,
+            },
+        }),
+    );
     useEffect(() => {
         setIsClient(true);
     }, []);
@@ -60,31 +72,44 @@ const TaskComponent: React.FC<TaskProps> = ({
         if (!over?.id) {
             soundWrong.play();
             notification.error({message: 'Wrong', duration: 1});
-            setPosition({...position, [active.id]: undefined});
+            setPosition({...position, [active.id]: {
+                scaleX: 1,
+                scaleY: 1,
+                x: 0,
+                y: 0,
+            }});
             return;
         }
-        if (active.id >= over?.id) {
+        if (active.id === over?.id) {
             soundCorrect.play();
             notification.success({message: 'Great', duration: 1});
             setDropped(true);
-            setPosition({...position, [active.id]: delta});
+            setPosition({...position, [currentId]: delta});
+            setCurrentId(currentId + 1);
         } else {
             soundWrong.play();
             notification.error({message: 'Wrong', duration: 1});
-            setPosition({...position, [active.id]: undefined});
+            setPosition({...position, [active.id]: {
+                scaleX: 1,
+                scaleY: 1,
+                x: 0,
+                y: 0,
+            }});
         }
     }
     useEffect(() => {
         play(title, path);
         setDropped(false);
     }, [title, path]);  
-
-    const draggableItems = droppableElements.map((item) => (
-        <Draggable key={`draggable_${item.id}`} {...item} delta={position[item.id]} />
-    ));
   
-    const droppableItems = dropTargets.map((item) => (
-        <Droppable key={`droppable_${item.id}`} {...item} isDropped={isDropped} isAnimated={item.isAnimated} />
+    const droppableItems = [{
+        id: 1,
+    }, {
+        id: 2,
+    }, {
+        id: 3,
+    }].map((item) => (
+        <Droppable key={`droppable_${item.id}`} {...item} isDropped={isDropped} />
     ));
     
     return (
@@ -97,12 +122,19 @@ const TaskComponent: React.FC<TaskProps> = ({
                             <Typography.Title level={4} style={{textAlign: 'center'}}>{title}</Typography.Title>
                             <Counter>{currentLevel + 1}</Counter>
                         </Flex>
-                        <DndContext onDragEnd={handleDragEnd} autoScroll={{enabled: false}}>
+                        <DndContext sensors={sensors} onDragEnd={handleDragEnd} autoScroll={{enabled: false}}>
                             <ContentWrapper>
                                 <div>
-                                    {draggableItems}
+                                    <Draggable
+                                        id={currentId}
+                                        imageUrl="/superman.png"
+                                        delta={position[currentId - 1]} 
+                                    />
                                 </div>
-                                <div>
+                                <div style={{
+                                    display: 'flex', 
+                                    alignItems: 'center', justifyContent: 'space-around', marginTop: '155px'}}
+                                >
                                     {droppableItems}
                                 </div>
                             </ContentWrapper>
@@ -114,4 +146,4 @@ const TaskComponent: React.FC<TaskProps> = ({
     );
 };
 
-export default memo(TaskComponent);
+export default memo(LevelFifteen);
