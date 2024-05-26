@@ -139,6 +139,7 @@ export const getItems = (currentItem: number) => {
             title: '',
             content: (
                 <TaskComponent
+                    isMultiple={true}
                     key="item-4"
                     title={`
                         ${draggableItemsSecond[0].title} ${randomPlaceSecond.title} 놓다,
@@ -159,6 +160,7 @@ export const getItems = (currentItem: number) => {
             title: '',
             content: (
                 <TaskComponent
+                    isMultiple={true}
                     key="item-5"
                     title={`
                         ${draggableItemsSecond[0].title} ${randomPlaceSecond.title} 놓다,
@@ -230,6 +232,7 @@ export const getItems = (currentItem: number) => {
             content: (
                 <TaskComponent
                     key="third-4"
+                    isMultiple={true}
                     title={
                         `
                         ${draggableItemsThird[2].title} ${droppableItemsThird[1].title} 놓다,

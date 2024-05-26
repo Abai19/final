@@ -28,6 +28,7 @@ interface TaskProps {
     soundUrlCorrect: string;
     soundUrlWrong: string;
     currentLevel: number;
+    isMultiple?: boolean;
 }
 
 const TaskComponent: React.FC<TaskProps> = ({
@@ -37,9 +38,11 @@ const TaskComponent: React.FC<TaskProps> = ({
     soundUrlCorrect,
     soundUrlWrong,
     currentLevel,
+    isMultiple,
 }) => {
     const [isClient, setIsClient] = useState(false);
     const [position, setPosition] = useState<{[key: string]: Coordinates | undefined}>({});
+    const [currentIndex, setCurrentIndex] = useState(0);
     const path = usePathname();
 
     const soundCorrect = new Howl({
@@ -63,16 +66,26 @@ const TaskComponent: React.FC<TaskProps> = ({
             setPosition({...position, [active.id]: undefined});
             return;
         }
-        if (active.id >= over?.id) {
+        const currentStepIndex = droppableElements.findIndex(item => item.id === active.id);
+        
+        if (isMultiple && active.id >= over?.id && currentStepIndex === currentIndex) {
             soundCorrect.play();
             notification.success({message: 'Great', duration: 1});
             setDropped(true);
             setPosition({...position, [active.id]: delta});
-        } else {
-            soundWrong.play();
-            notification.error({message: 'Wrong', duration: 1});
-            setPosition({...position, [active.id]: undefined});
+            setCurrentIndex(currentIndex + 1);
+            return;
         }
+        if (active.id >= over?.id && !isMultiple) {
+            soundCorrect.play();
+            notification.success({message: 'Great', duration: 1});
+            setDropped(true);
+            setPosition({...position, [active.id]: delta});
+            return;
+        } 
+        soundWrong.play();
+        notification.error({message: 'Wrong', duration: 1});
+        setPosition({...position, [active.id]: undefined});
     }
     useEffect(() => {
         play(title, path);

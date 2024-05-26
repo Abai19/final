@@ -1,5 +1,6 @@
 import {shuffle} from 'lodash';
 
+import LevelFifteen from '../../components/level-fifteen';
 import TaskComponent from '../../components/task';
 
 const dropTargets = [
@@ -138,6 +139,7 @@ export const getItems = (currentItem: number) => {
             title: '',
             content: (
                 <TaskComponent
+                    isMultiple={true}
                     key="item-4"
                     title={`
                         Put ${draggableItemsSecond[0].title} on the ${randomPlaceSecond.title},
@@ -159,6 +161,7 @@ export const getItems = (currentItem: number) => {
             content: (
                 <TaskComponent
                     key="item-5"
+                    isMultiple={true}
                     title={`
                         Put ${draggableItemsSecond[0].title} on the ${randomPlaceSecond.title},
                         Put ${draggableItemsSecond[1].title} on the ${randomPlaceSecond.title},
@@ -229,6 +232,7 @@ export const getItems = (currentItem: number) => {
             content: (
                 <TaskComponent
                     key="third-4"
+                    isMultiple={true}
                     title={
                         `
                         Put ${draggableItemsThird[2].title} on the ${droppableItemsThird[1].title},
@@ -268,6 +272,20 @@ export const getItems = (currentItem: number) => {
                 <TaskComponent
                     key="color-2"
                     title={`Put the ${draggableItemsFour[1].title} on the ${droppableItemsFour[1].title}`}
+                    droppableElements={[draggableItemsFour[1]]}
+                    dropTargets={[droppableItemsFour[1]]}
+                    soundUrlCorrect="/english/sounds/great.mp3"
+                    soundUrlWrong="/english/sounds/wrong.mp3"
+                    currentLevel={currentItem}
+                />
+            ),
+        },
+        {
+            title: '',
+            content: (
+                <LevelFifteen
+                    key="15"
+                    title="Cross the bridge"
                     droppableElements={[draggableItemsFour[1]]}
                     dropTargets={[droppableItemsFour[1]]}
                     soundUrlCorrect="/english/sounds/great.mp3"

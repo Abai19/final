@@ -139,6 +139,7 @@ export const getItems = (currentItem: number) => {
             title: '',
             content: (
                 <TaskComponent
+                    isMultiple={true}
                     key="item-4"
                     title={`
                         ${draggableItemsSecond[0].title} ${randomPlaceSecond.title} кой, андан кийин
@@ -160,6 +161,7 @@ export const getItems = (currentItem: number) => {
             content: (
                 <TaskComponent
                     key="item-5"
+                    isMultiple={true}
                     title={`
                         ${draggableItemsSecond[0].title} ${randomPlaceSecond.title} кой, андан кийин
                         ${draggableItemsSecond[1].title} ${randomPlaceSecond.title} кой, андан кийин
@@ -229,6 +231,8 @@ export const getItems = (currentItem: number) => {
             title: '',
             content: (
                 <TaskComponent
+                    isMultiple={true}
+
                     key="third-4"
                     title={
                         `

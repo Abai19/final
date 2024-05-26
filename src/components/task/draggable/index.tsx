@@ -19,7 +19,7 @@ export const Draggable = ({id, imageUrl, delta}: IElement) => {
     };
     return (
         <div ref={setNodeRef} style={{...style, zIndex: 9999, position: 'relative'}} {...listeners} {...attributes}>
-            <Image width={150} height={100} src={imageUrl} alt={`Element ${id}`} />
+            <Image width={120} height={80} src={imageUrl} alt={`Element ${id}`} />
         </div>
     );
 };
