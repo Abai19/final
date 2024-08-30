@@ -1,6 +1,6 @@
 'use client';
-import {DoubleRightOutlined, LockOutlined, UserOutlined} from '@ant-design/icons';
-import {Button, Checkbox, Form, Input, Typography} from 'antd';
+import {DoubleRightOutlined} from '@ant-design/icons';
+import {Button, Form, Typography} from 'antd';
 import {useRouter} from 'next/navigation';
 
 import {Wrapper, StyledForm} from './styles';

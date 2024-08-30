@@ -1,10 +1,10 @@
 'use client';
-import {LogoutOutlined, UserOutlined} from '@ant-design/icons';
-import {Badge, Button, Dropdown, MenuProps} from 'antd';
+import {LogoutOutlined} from '@ant-design/icons';
+import {Button} from 'antd';
 import {useRouter} from 'next/navigation';
-import {useEffect, useState} from 'react';
+// import {useEffect, useState} from 'react';
 
-import {HeaderWrapper, Logo} from './styles';
+import {HeaderWrapper} from './styles';
 const headerStyle: React.CSSProperties = {
     textAlign: 'center',
     color: '#fff',
@@ -14,25 +14,25 @@ const headerStyle: React.CSSProperties = {
     backgroundColor: '#1677ff',
 };
 export const Header = () => {
-    const [title, setTitle] = useState<string>('');
+    // const [title, setTitle] = useState<string>('');
 
     const {push} = useRouter();
     const logoutClick = () => {
         push('auth');
     };
-    const items: MenuProps['items'] = [
-        {
-            label: 'Выйти из профиля',
-            key: '1',
-            onClick: logoutClick,
-        },
-    ];
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const storedUsername = localStorage.getItem('username');
-            setTitle(storedUsername || '');
-        }
-    }, []);
+    // const items: MenuProps['items'] = [
+    //     {
+    //         label: 'Выйти из профиля',
+    //         key: '1',
+    //         onClick: logoutClick,
+    //     },
+    // ];
+    // useEffect(() => {
+    //     if (typeof window !== 'undefined') {
+    //         const storedUsername = localStorage.getItem('username');
+    //         setTitle(storedUsername || '');
+    //     }
+    // }, []);
 
     return (
         <HeaderWrapper style={headerStyle}>
