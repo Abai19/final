@@ -1,6 +1,6 @@
 'use client';
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
-import {Button, Checkbox, Form, Input} from 'antd';
+import {Button, Checkbox, Form, Input, Typography} from 'antd';
 import {useRouter} from 'next/navigation';
 
 import {Wrapper, StyledForm} from './styles';
@@ -9,15 +9,20 @@ const AuthPage = () => {
     const {push} = useRouter();
     const onFinish = (values: any) => {
         typeof window !== 'undefined' ? localStorage.setItem('username', values.username) : '';
-        push('/language');
+        push('/kyrgyz');
     };
 
     return (
         <Wrapper>
+        
             <StyledForm
                 initialValues={{remember: true}}
                 onFinish={onFinish}
             >
+                <Typography.Title level={4} style={{textAlign: 'center'}}>
+                КЫРГЫЗ ТИЛИНЕ КӨЗ КАРАНДЫСЫЗ КИРГИЗүү 
+                КАРАГУЛОВ А., БАКТЫБЕКОВ А., КЕНЕНБАЕВ Э.
+                </Typography.Title>
                 <Form.Item
                     name="username"
                     rules={[{required: true, message: 'Введите логин!'}]}
@@ -41,7 +46,7 @@ const AuthPage = () => {
                 </Form.Item>
                 <Form.Item>
                     <Form.Item name="remember" valuePropName="checked" noStyle>
-                        <Checkbox>Запомить меня</Checkbox>
+                        <Checkbox>Запомнить меня</Checkbox>
                     </Form.Item>
                 </Form.Item>
 

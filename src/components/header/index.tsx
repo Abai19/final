@@ -18,7 +18,7 @@ export const Header = () => {
 
     const {push} = useRouter();
     const logoutClick = () => {
-        push('language');
+        push('auth');
     };
     const items: MenuProps['items'] = [
         {

@@ -32,17 +32,17 @@ const Kyrgyz: FC = () => {
     const content = useMemo(() => {
         const items = getItems(currentLevel);
         if (!items[currentLevel]?.content) {
-            notification.success({message: 'Congratulations, you have completed all tasks', duration: 1});
+            notification.success({message: 'Жакшы!', duration: 1});
             return (
                 <Result
                     status="success"
                     title={
                         <>
                             <Typography.Title level={4}>
-                                Congratulations, you have completed all tasks!
+                                Куттуктайбыз, сиз бардык тапшырмаларды аткардыңыз!
                             </Typography.Title>
                             <Typography.Title level={4}>
-                                You are closer to your goal!
+                                Сиз максатыңызга жакындадыңыз!
                             </Typography.Title>
                         </>
                     }
@@ -59,22 +59,20 @@ const Kyrgyz: FC = () => {
             <Flex align="center" gap={10}>
                 {
                     currentLevel > 0 && (
-                        <Button size="large" icon={<LeftOutlined />} onClick={goPrev}>Previous</Button>
+                        <Button size="large" icon={<LeftOutlined />} onClick={goPrev}></Button>
                     )
                 }
                 <Steps current={currentLevel} items={getItems(currentLevel)} />
                 {
                     currentLevel < 12 && (
                         <Button size="large" onClick={goNextChapter}>
-                            Next chapter
-                            <RightOutlined />
+                            =<RightOutlined />
                         </Button>                    
                     )
                 }
                 {
                     currentLevel < stepsLength && (
                         <Button size="large" onClick={goNext}>
-                            Next
                             <RightOutlined />
                         </Button>                    
                     )

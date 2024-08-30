@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ContentWrapper = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 50vh;
 `;
 export const Counter = styled.div`

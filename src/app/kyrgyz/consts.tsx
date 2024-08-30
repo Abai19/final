@@ -20,7 +20,7 @@ const draggableItemsSecond = shuffle([
 const droppableItemsSecond = shuffle([
     {id: 4, imageUrl: '/english/images/table.webp', title: 'үстөлгө'},
     {id: 5, imageUrl: '/english/images/chair.webp', title: 'отургучка'},
-    {id: 6, imageUrl: '/english/images/board.avif', title: 'доскага'},
+    {id: 6, imageUrl: '/english/images/board.avif', title: 'тактага'},
 ]);
 
 const draggableItemsThird = shuffle([
@@ -31,7 +31,7 @@ const draggableItemsThird = shuffle([
 const droppableItemsThird = shuffle([
     {id: 4, imageUrl: '/english/images/table.webp', title: 'үстөлгө'},
     {id: 5, imageUrl: '/english/images/chair.webp', title: 'отургучка'},
-    {id: 6, imageUrl: '/english/images/board.avif', title: 'доскага'},
+    {id: 6, imageUrl: '/english/images/board.avif', title: 'тактага'},
 ]);
 
 const draggableItemsFour = [
@@ -43,7 +43,7 @@ const draggableItemsFour = [
 const droppableItemsFour = [
     {id: 2, imageUrl: '/english/images/red-table.png', title: 'кызыл үстөлгө'},
     {id: 2, imageUrl: '/english/images/green_chair.png', title: 'жашыл отургучка'},
-    {id: 2, imageUrl: '/english/images/black_board.webp', title: 'кара доскага'},
+    {id: 2, imageUrl: '/english/images/black_board.webp', title: 'кара тактага'},
 ];
 export const getItems = (currentItem: number) => {
     const randomElementSquirrel = droppableElementsSquirrel[currentItem % droppableElementsSquirrel.length];
