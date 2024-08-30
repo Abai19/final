@@ -8,5 +8,5 @@ export const Wrapper = styled.div`
     height: 100vh;
 `;      
 export const StyledForm = styled(Form)`
-    width: 400px;
+    width: 500px;
 `;      

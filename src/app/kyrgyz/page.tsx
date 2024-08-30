@@ -1,12 +1,12 @@
 'use client';
 import {LeftOutlined, RightOutlined} from '@ant-design/icons';
-import {Button, Flex, Result, Steps, Typography, notification} from 'antd';
+import {Button, Flex, Result, Typography, notification} from 'antd';
 import {FC, useMemo, useState} from 'react';
 
 import withHeader from '../../hoc/with-header';
 
 import {getItems} from './consts';
-import {Wrapper} from './styles';
+import {Wrapper, StyledSteps} from './styles';
 
 const Kyrgyz: FC = () => {
     const [currentLevel, setCurrentLevel] = useState(0);
@@ -62,7 +62,7 @@ const Kyrgyz: FC = () => {
                         <Button size="large" icon={<LeftOutlined />} onClick={goPrev}></Button>
                     )
                 }
-                <Steps current={currentLevel} items={getItems(currentLevel)} />
+                <StyledSteps current={currentLevel} items={getItems(currentLevel)} />
                 {
                     currentLevel < 12 && (
                         <Button size="large" onClick={goNextChapter}>

@@ -1,5 +1,5 @@
 'use client';
-import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import {DoubleRightOutlined, LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Checkbox, Form, Input, Typography} from 'antd';
 import {useRouter} from 'next/navigation';
 
@@ -20,10 +20,10 @@ const AuthPage = () => {
                 onFinish={onFinish}
             >
                 <Typography.Title level={4} style={{textAlign: 'center'}}>
-                КЫРГЫЗ ТИЛИНЕ КӨЗ КАРАНДЫСЫЗ КИРГИЗүү 
-                КАРАГУЛОВ А., БАКТЫБЕКОВ А., КЕНЕНБАЕВ Э.
+                    КЫРГЫЗ ТИЛИНЕ КӨЗ КАРАНДЫСЫЗ КИРГИЗүү <br />
+                    КАРАГУЛОВ А., БАКТЫБЕКОВ А., КЕНЕНБАЕВ Э.
                 </Typography.Title>
-                <Form.Item
+                {/* <Form.Item
                     name="username"
                     rules={[{required: true, message: 'Введите логин!'}]}
                 >
@@ -48,7 +48,7 @@ const AuthPage = () => {
                     <Form.Item name="remember" valuePropName="checked" noStyle>
                         <Checkbox>Запомнить меня</Checkbox>
                     </Form.Item>
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item>
                     <Button 
@@ -57,8 +57,9 @@ const AuthPage = () => {
                         style={{width: '100%'}} 
                         htmlType="submit" 
                         className="login-form-button"
+                        icon={<DoubleRightOutlined />}
                     >
-                    Войти
+                        
                     </Button>
                 </Form.Item>
             </StyledForm>

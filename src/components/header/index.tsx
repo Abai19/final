@@ -1,5 +1,5 @@
 'use client';
-import {UserOutlined} from '@ant-design/icons';
+import {LogoutOutlined, UserOutlined} from '@ant-design/icons';
 import {Badge, Button, Dropdown, MenuProps} from 'antd';
 import {useRouter} from 'next/navigation';
 import {useEffect, useState} from 'react';
@@ -36,16 +36,15 @@ export const Header = () => {
 
     return (
         <HeaderWrapper style={headerStyle}>
-            <Logo>
-                easy language
-            </Logo>
-            <Badge count="lite" overflowCount={99999}>
+            <div></div>
+            {/* <Badge count="lite" overflowCount={99999}>
                 <Dropdown menu={{items}} placement="bottom">
                     <Button icon={<UserOutlined style={{fontSize: 20}} />}>
                         {title}
                     </Button>
                 </Dropdown>
-            </Badge>
+            </Badge> */}
+            <Button onClick={logoutClick} icon={<LogoutOutlined />}> үйгө кайтуу</Button>
         </HeaderWrapper>
     );
 };
